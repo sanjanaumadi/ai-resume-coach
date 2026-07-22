@@ -1,0 +1,7 @@
+# Install this file starting at Milestone 4 (JD matching / rewriting / interview coach).
+# Needs a C++ build toolchain on Windows for chroma-hnswlib:
+# https://visualstudio.microsoft.com/visual-cpp-build-tools/  (select "Desktop development with C++")
+langchain==0.3.1
+langchain-google-genai==2.0.0
+chromadb==0.5.5
+sentence-transformers==3.1.1
