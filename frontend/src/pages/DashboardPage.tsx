@@ -113,6 +113,12 @@ export function DashboardPage() {
                   >
                     Mock interview →
                   </Link>
+                  <Link
+                    to={`/career/${resume.id}`}
+                    className="rounded-md border border-line px-3 py-1.5 font-body text-sm text-ink transition hover:border-verdigris hover:text-verdigris"
+                  >
+                    Career fit →
+                  </Link>
                 </div>
               </li>
             ))}

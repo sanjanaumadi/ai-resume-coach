@@ -6,12 +6,14 @@ from fastapi.responses import JSONResponse
 
 from app.api.v1.analysis import router as analysis_router
 from app.api.v1.auth import router as auth_router
+from app.api.v1.career_suggestion import router as career_suggestion_router
 from app.api.v1.interview import router as interview_router
 from app.api.v1.resume import router as resume_router
 from app.api.v1.rewrite import router as rewrite_router
 from app.core.config import settings
 from app.db.session import Base, engine
 from app.models.analysis import Analysis  # noqa: F401
+from app.models.career_suggestion import CareerSuggestion  # noqa: F401
 from app.models.interview import InterviewSession  # noqa: F401
 from app.models.resume import Resume  # noqa: F401
 from app.models.rewrite import Rewrite  # noqa: F401
@@ -67,3 +69,4 @@ app.include_router(resume_router, prefix=settings.API_V1_PREFIX)
 app.include_router(analysis_router, prefix=settings.API_V1_PREFIX)
 app.include_router(rewrite_router, prefix=settings.API_V1_PREFIX)
 app.include_router(interview_router, prefix=settings.API_V1_PREFIX)
+app.include_router(career_suggestion_router, prefix=settings.API_V1_PREFIX)

@@ -6,6 +6,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { AnalysisPage } from "./pages/AnalysisPage";
 import { MockInterviewPage } from "./pages/MockInterviewPage";
+import { CareerSuggestionsPage } from "./pages/CareerSuggestionsPage";
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <MockInterviewPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/career/:resumeId"
+            element={
+              <ProtectedRoute>
+                <CareerSuggestionsPage />
               </ProtectedRoute>
             }
           />

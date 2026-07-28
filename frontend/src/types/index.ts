@@ -95,6 +95,26 @@ export interface InterviewSession {
   created_at: string;
 }
 
+export interface LearningStep {
+  skill: string;
+  reason: string;
+}
+
+export interface CareerSuggestionsResult {
+  suitable_roles: string[];
+  missing_technologies: string[];
+  learning_roadmap: LearningStep[];
+  resume_readiness_score: number;
+  readiness_summary: string;
+}
+
+export interface CareerSuggestion {
+  id: string;
+  resume_id: string;
+  result: CareerSuggestionsResult;
+  created_at: string;
+}
+
 export interface ApiError {
   detail: string;
 }

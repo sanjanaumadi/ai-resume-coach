@@ -1,5 +1,5 @@
 import { api } from "./api";
-import type { Analysis, InterviewSession, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
+import type { Analysis, CareerSuggestion, InterviewSession, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
 
 export const authApi = {
   register: (email: string, full_name: string, password: string) =>
@@ -53,4 +53,11 @@ export const interviewApi = {
   list: () => api.get<{ sessions: InterviewSession[]; total: number }>("/interview"),
 
   get: (sessionId: string) => api.get<InterviewSession>(`/interview/${sessionId}`),
+};
+
+export const careerSuggestionApi = {
+  generate: (resume_id: string, target_role?: string) =>
+    api.post<CareerSuggestion>("/career-suggestions", { resume_id, target_role: target_role || null }),
+
+  list: () => api.get<{ suggestions: CareerSuggestion[]; total: number }>("/career-suggestions"),
 };
