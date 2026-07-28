@@ -60,6 +60,41 @@ export interface Rewrite {
   created_at: string;
 }
 
+export interface InterviewQuestion {
+  id: string;
+  category: "hr" | "technical" | "behavioral" | "resume_specific";
+  question: string;
+}
+
+export interface InterviewAnswerFeedback {
+  question_id: string;
+  answer: string;
+  communication_score: number;
+  technical_accuracy_score: number;
+  relevance_score: number;
+  feedback: string;
+  suggested_improvement: string;
+}
+
+export interface InterviewFinalReport {
+  avg_communication_score: number;
+  avg_technical_accuracy_score: number;
+  avg_relevance_score: number;
+  overall_score: number;
+  questions_answered: number;
+  questions_total: number;
+}
+
+export interface InterviewSession {
+  id: string;
+  resume_id: string;
+  status: "in_progress" | "completed";
+  questions: InterviewQuestion[];
+  answers: InterviewAnswerFeedback[];
+  final_report: InterviewFinalReport | null;
+  created_at: string;
+}
+
 export interface ApiError {
   detail: string;
 }

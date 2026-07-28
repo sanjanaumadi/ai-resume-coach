@@ -100,12 +100,20 @@ export function DashboardPage() {
                     {new Date(resume.created_at).toLocaleDateString()}
                   </p>
                 </div>
-                <Link
-                  to={`/analyze/${resume.id}`}
-                  className="rounded-md border border-line px-3 py-1.5 font-body text-sm text-ink transition hover:border-verdigris hover:text-verdigris"
-                >
-                  Analyze →
-                </Link>
+                <div className="flex gap-2">
+                  <Link
+                    to={`/analyze/${resume.id}`}
+                    className="rounded-md border border-line px-3 py-1.5 font-body text-sm text-ink transition hover:border-verdigris hover:text-verdigris"
+                  >
+                    Analyze →
+                  </Link>
+                  <Link
+                    to={`/interview/${resume.id}`}
+                    className="rounded-md border border-line px-3 py-1.5 font-body text-sm text-ink transition hover:border-verdigris hover:text-verdigris"
+                  >
+                    Mock interview →
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>

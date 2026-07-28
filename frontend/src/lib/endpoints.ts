@@ -1,5 +1,5 @@
 import { api } from "./api";
-import type { Analysis, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
+import type { Analysis, InterviewSession, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
 
 export const authApi = {
   register: (email: string, full_name: string, password: string) =>
@@ -39,4 +39,18 @@ export const rewriteApi = {
     api.post<Rewrite>("/rewrite", { resume_id, section, text, job_description: job_description || null }),
 
   list: () => api.get<{ rewrites: Rewrite[]; total: number }>("/rewrite"),
+};
+
+export const interviewApi = {
+  start: (resume_id: string, job_description?: string) =>
+    api.post<InterviewSession>("/interview", { resume_id, job_description: job_description || null }),
+
+  submitAnswer: (sessionId: string, question_id: string, answer: string) =>
+    api.post<InterviewSession>(`/interview/${sessionId}/answer`, { question_id, answer }),
+
+  finish: (sessionId: string) => api.post<InterviewSession>(`/interview/${sessionId}/finish`),
+
+  list: () => api.get<{ sessions: InterviewSession[]; total: number }>("/interview"),
+
+  get: (sessionId: string) => api.get<InterviewSession>(`/interview/${sessionId}`),
 };

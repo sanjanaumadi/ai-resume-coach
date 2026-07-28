@@ -5,6 +5,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { AnalysisPage } from "./pages/AnalysisPage";
+import { MockInterviewPage } from "./pages/MockInterviewPage";
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AnalysisPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/interview/:resumeId"
+            element={
+              <ProtectedRoute>
+                <MockInterviewPage />
               </ProtectedRoute>
             }
           />
