@@ -1,0 +1,35 @@
+import { api } from "./api";
+import type { Analysis, ResumeDetail, TokenResponse, User } from "../types";
+
+export const authApi = {
+  register: (email: string, full_name: string, password: string) =>
+    api.post<TokenResponse>("/auth/register", { email, full_name, password }),
+
+  login: (email: string, password: string) =>
+    api.post<TokenResponse>("/auth/login", { email, password }),
+
+  me: () => api.get<User>("/auth/me"),
+};
+
+export const resumeApi = {
+  upload: (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    return api.post<ResumeDetail>("/resumes/upload", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+  },
+
+  list: () => api.get<{ resumes: ResumeDetail[]; total: number }>("/resumes"),
+
+  get: (id: string) => api.get<ResumeDetail>(`/resumes/${id}`),
+};
+
+export const analysisApi = {
+  run: (resume_id: string, job_description?: string) =>
+    api.post<Analysis>("/analysis", { resume_id, job_description: job_description || null }),
+
+  list: () => api.get<{ analyses: Analysis[]; total: number }>("/analysis"),
+
+  get: (id: string) => api.get<Analysis>(`/analysis/${id}`),
+};
