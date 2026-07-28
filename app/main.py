@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.v1.analysis import router as analysis_router
+from app.api.v1.analytics import router as analytics_router
 from app.api.v1.auth import router as auth_router
 from app.api.v1.career_suggestion import router as career_suggestion_router
 from app.api.v1.interview import router as interview_router
@@ -70,3 +71,4 @@ app.include_router(analysis_router, prefix=settings.API_V1_PREFIX)
 app.include_router(rewrite_router, prefix=settings.API_V1_PREFIX)
 app.include_router(interview_router, prefix=settings.API_V1_PREFIX)
 app.include_router(career_suggestion_router, prefix=settings.API_V1_PREFIX)
+app.include_router(analytics_router, prefix=settings.API_V1_PREFIX)

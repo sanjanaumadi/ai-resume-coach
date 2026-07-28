@@ -22,6 +22,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Link to="/dashboard" className="text-ink-soft transition hover:text-ink">
               Dashboard
             </Link>
+            <Link to="/analytics" className="text-ink-soft transition hover:text-ink">
+              Analytics
+            </Link>
             <span className="text-ink-soft">{user?.full_name}</span>
             <button
               onClick={handleLogout}

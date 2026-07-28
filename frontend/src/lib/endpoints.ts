@@ -1,5 +1,5 @@
 import { api } from "./api";
-import type { Analysis, CareerSuggestion, InterviewSession, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
+import type { Analysis, AnalyticsSummary, CareerSuggestion, InterviewSession, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
 
 export const authApi = {
   register: (email: string, full_name: string, password: string) =>
@@ -60,4 +60,8 @@ export const careerSuggestionApi = {
     api.post<CareerSuggestion>("/career-suggestions", { resume_id, target_role: target_role || null }),
 
   list: () => api.get<{ suggestions: CareerSuggestion[]; total: number }>("/career-suggestions"),
+};
+
+export const analyticsApi = {
+  getSummary: () => api.get<AnalyticsSummary>("/analytics/summary"),
 };

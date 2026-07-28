@@ -115,6 +115,27 @@ export interface CareerSuggestion {
   created_at: string;
 }
 
+export interface ScorePoint {
+  date: string;
+  score: number;
+}
+
+export interface SkillFrequency {
+  skill: string;
+  count: number;
+}
+
+export interface AnalyticsSummary {
+  ats_score_trend: ScorePoint[];
+  interview_score_trend: ScorePoint[];
+  skills_frequency: SkillFrequency[];
+  total_resumes: number;
+  total_analyses: number;
+  total_interviews: number;
+  latest_ats_score: number | null;
+  latest_interview_score: number | null;
+}
+
 export interface ApiError {
   detail: string;
 }

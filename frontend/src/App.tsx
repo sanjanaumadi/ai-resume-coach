@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -7,6 +8,10 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { AnalysisPage } from "./pages/AnalysisPage";
 import { MockInterviewPage } from "./pages/MockInterviewPage";
 import { CareerSuggestionsPage } from "./pages/CareerSuggestionsPage";
+
+// Lazy-loaded: recharts alone adds ~380KB to the bundle, and analytics
+// isn't needed on first load - splitting it out keeps initial page load fast.
+const AnalyticsPage = lazy(() => import("./pages/AnalyticsPage").then((m) => ({ default: m.AnalyticsPage })));
 
 function App() {
   return (
@@ -44,6 +49,16 @@ function App() {
             element={
               <ProtectedRoute>
                 <CareerSuggestionsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <ProtectedRoute>
+                <Suspense fallback={<div className="p-10 font-mono text-sm text-ink-soft">Loading…</div>}>
+                  <AnalyticsPage />
+                </Suspense>
               </ProtectedRoute>
             }
           />
