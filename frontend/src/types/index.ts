@@ -30,6 +30,7 @@ export interface JDMatch {
   jd_skills_found: string[];
   missing_skills: string[];
   match_percentage: number;
+  semantic_similarity: number | null;
 }
 
 export interface AnalysisResult {

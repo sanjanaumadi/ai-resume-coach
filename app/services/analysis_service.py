@@ -15,6 +15,20 @@ class AnalysisNotFoundError(AppError):
     status_code = 404
 
 
+def _try_add_semantic_similarity(result: dict, resume_text: str, job_description: str | None) -> None:
+    """Adds a semantic_similarity score to result['jd_match'] if sentence-transformers
+    is installed. Silently no-ops otherwise - semantic matching is an enhancement on top
+    of keyword matching, not a hard requirement, so its absence should never break analysis."""
+    if not job_description or not result.get("jd_match"):
+        return
+    try:
+        from app.services.semantic_matcher import compute_semantic_similarity
+        result["jd_match"]["semantic_similarity"] = compute_semantic_similarity(resume_text, job_description)
+    except ImportError:
+        logger.info("sentence-transformers not installed - skipping semantic similarity score")
+        result["jd_match"]["semantic_similarity"] = None
+
+
 class AnalysisService:
     def __init__(self, analysis_repo: AnalysisRepository, resume_repo: ResumeRepository):
         self.analysis_repo = analysis_repo
@@ -28,6 +42,7 @@ class AnalysisService:
             raise ResumeNotFoundError("Resume not found")
 
         result = analyze_resume(resume.extracted_text, job_description)
+        _try_add_semantic_similarity(result, resume.extracted_text, job_description)
 
         analysis = Analysis(
             user_id=user_id,

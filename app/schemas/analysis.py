@@ -13,6 +13,7 @@ class JDMatchResult(BaseModel):
     jd_skills_found: list[str]
     missing_skills: list[str]
     match_percentage: int
+    semantic_similarity: int | None = None
 
 
 class AnalysisResult(BaseModel):

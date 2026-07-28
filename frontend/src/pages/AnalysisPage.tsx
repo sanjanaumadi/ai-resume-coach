@@ -114,7 +114,10 @@ export function AnalysisPage() {
             {analysis.result.jd_match && (
               <section>
                 <h2 className="font-display text-lg font-semibold text-ink">
-                  Job description match — {analysis.result.jd_match.match_percentage}%
+                  Job description match — {analysis.result.jd_match.match_percentage}% keywords
+                  {analysis.result.jd_match.semantic_similarity !== null && (
+                    <span className="text-ink-soft"> · {analysis.result.jd_match.semantic_similarity}% overall fit</span>
+                  )}
                 </h2>
                 {analysis.result.jd_match.missing_skills.length > 0 ? (
                   <>

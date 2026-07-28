@@ -1,7 +1,7 @@
-# Install this file starting at Milestone 4 (JD matching / rewriting / interview coach).
+# Install this file starting at Milestone 5 (resume rewriting) / 6-7 (interview coach + doc search).
 # Needs a C++ build toolchain on Windows for chroma-hnswlib:
 # https://visualstudio.microsoft.com/visual-cpp-build-tools/  (select "Desktop development with C++")
+# For Milestone 4 (semantic JD matching), use requirements-embeddings.txt instead - no compiler needed.
 langchain==0.3.1
 langchain-google-genai==2.0.0
 chromadb==0.5.5
-sentence-transformers==3.1.1
