@@ -51,6 +51,15 @@ export interface Analysis {
   created_at: string;
 }
 
+export interface Rewrite {
+  id: string;
+  resume_id: string;
+  section: "summary" | "bullets" | "skills";
+  original_text: string;
+  rewritten_text: string;
+  created_at: string;
+}
+
 export interface ApiError {
   detail: string;
 }

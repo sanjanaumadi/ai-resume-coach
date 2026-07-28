@@ -7,10 +7,12 @@ from fastapi.responses import JSONResponse
 from app.api.v1.analysis import router as analysis_router
 from app.api.v1.auth import router as auth_router
 from app.api.v1.resume import router as resume_router
+from app.api.v1.rewrite import router as rewrite_router
 from app.core.config import settings
 from app.db.session import Base, engine
 from app.models.analysis import Analysis  # noqa: F401
 from app.models.resume import Resume  # noqa: F401
+from app.models.rewrite import Rewrite  # noqa: F401
 from app.models.user import User  # noqa: F401  (import registers the table with Base.metadata)
 from app.utils.exceptions import AppError
 from app.utils.logger import get_logger
@@ -61,3 +63,4 @@ async def health_check():
 app.include_router(auth_router, prefix=settings.API_V1_PREFIX)
 app.include_router(resume_router, prefix=settings.API_V1_PREFIX)
 app.include_router(analysis_router, prefix=settings.API_V1_PREFIX)
+app.include_router(rewrite_router, prefix=settings.API_V1_PREFIX)

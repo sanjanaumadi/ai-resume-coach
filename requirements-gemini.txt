@@ -1,0 +1,3 @@
+# Gemini-powered features (Milestone 5+): resume rewriting, interview questions.
+# Lightweight - direct SDK, no LangChain/ChromaDB needed for simple prompt-in/text-out calls.
+google-generativeai==0.8.3

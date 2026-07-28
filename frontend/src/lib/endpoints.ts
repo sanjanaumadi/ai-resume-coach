@@ -1,5 +1,5 @@
 import { api } from "./api";
-import type { Analysis, ResumeDetail, TokenResponse, User } from "../types";
+import type { Analysis, Rewrite, ResumeDetail, TokenResponse, User } from "../types";
 
 export const authApi = {
   register: (email: string, full_name: string, password: string) =>
@@ -32,4 +32,11 @@ export const analysisApi = {
   list: () => api.get<{ analyses: Analysis[]; total: number }>("/analysis"),
 
   get: (id: string) => api.get<Analysis>(`/analysis/${id}`),
+};
+
+export const rewriteApi = {
+  run: (resume_id: string, section: "summary" | "bullets" | "skills", text: string, job_description?: string) =>
+    api.post<Rewrite>("/rewrite", { resume_id, section, text, job_description: job_description || null }),
+
+  list: () => api.get<{ rewrites: Rewrite[]; total: number }>("/rewrite"),
 };

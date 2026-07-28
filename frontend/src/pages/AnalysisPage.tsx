@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { isAxiosError } from "axios";
 import { AppShell } from "../components/AppShell";
 import { ScoreGauge } from "../components/ScoreGauge";
+import { RewritePanel } from "../components/RewritePanel";
 import { analysisApi } from "../lib/endpoints";
 import type { Analysis, ApiError } from "../types";
 
@@ -160,6 +161,8 @@ export function AnalysisPage() {
           </div>
         </div>
       )}
+
+      {resumeId && <RewritePanel resumeId={resumeId} />}
     </AppShell>
   );
 }
